@@ -1,0 +1,28 @@
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
+
+# Asosiy paketlar
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    unzip \
+    xz-utils \
+    zip \
+    openjdk-17-jdk \
+    wget \
+    && apt-get clean
+
+# Flutter SDK o‘rnatish
+RUN git clone https://github.com/flutter/flutter.git -b stable /usr/local/flutter
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:$PATH"
+
+# Android SDK
+RUN mkdir -p /usr/local/android-sdk
+ENV ANDROID_SDK_ROOT=/usr/local/android-sdk
+ENV PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
+
+# Licenselarni qabul qilish
+RUN yes | flutter doctor --android-licenses || true
+
+# Flutter web va Linux desktop enabled
+RUN flutter config --enable-web && flutter config --enable-linux-desktop
+RUN flutter precache
