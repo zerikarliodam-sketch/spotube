@@ -1,18 +1,19 @@
-name: spotube
+name: spicy
 description: Open source extensible music streaming platform and app, based on BYOMM (Bring your own music metadata) concept
 
 publish_to: "none"
 
 version: 5.1.0+43
 
-homepage: https://spotube.krtirtho.dev
-repository: https://github.com/KRTirtho/spotube
+homepage: https://netlivy.netlify.app
+repository: https://netlivy.netlify.app
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.29.0"
 
 dependencies:
+  json_annotation: ^4.9.0
   app_links: ^6.4.0
   args: ^2.5.0
   audio_service: ^0.18.13
